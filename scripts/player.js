@@ -38,13 +38,22 @@ class Player {
   }
 
   skipTo (percent) {
-    if (this.playState !== 'playing') { return }
+    if (this.playState !== 'playing') { return; }
     this.soundObject.setTime( (percent / 100) * this.soundObject.getDuration() );
   }
 
   setVolume (percent) {
     this.volume = percent;
     this.soundObject.setVolume(percent);
+  }
+
+  prettyTime (timeInSeconds) {
+    let minutes = Math.floor(timeInSeconds / 60);
+    let seconds = Math.floor(timeInSeconds % 60);
+    // console.log(minutes);
+    if (minutes < 10) {minutes = "0" + minutes;}
+    if (seconds < 10) {seconds = "0" + seconds;}
+    return minutes + ":" + seconds;
   }
 }
 
